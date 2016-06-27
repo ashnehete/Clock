@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+	font-family: 'Anonymous Pro', monospace;
+}
+canvas {
+    position: relative;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh
+}
+
+.mount {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+	width: 100vw;
+}
+#sil1 {
+    z-index: 1;
+}
+#sil2 {
+    z-index: 2;
+}
+#sil3 {
+    z-index: 3;
+}
+
+#time {
+    position: fixed;
+    z-index: 4;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+}
