@@ -16,7 +16,7 @@ function ColorStop(color, position) {
 var MODEL = {
 	// time: 1000*60*60*24, // Milliseconds in a day
 	// start: UTIL.today(),
-	time: 20000,
+	time: 10000,
 	start: Date.now(),
 	color: {
 		red: new THREE.Color(0xff0000),
@@ -26,15 +26,36 @@ var MODEL = {
 		black: new THREE.Color(0x000000)
 	},
 
+	items: [
+		"sun", "sky", "mount1", "mount2", "mount3"
+	],
+
 	gradients: {
 		sun: [
 			new ColorStop(0x000000, 0),
-			new ColorStop(0x000000, 0)
+			new ColorStop(0xFFFFFF, 0.5),
+			new ColorStop(0x00FFFF, 1)
 		],
-		sky: [],
-		mount1: [],
-		mount2: [],
-		mount3: []
+		sky: [
+			new ColorStop(0x000000, 0),
+			new ColorStop(0xFFFFFF, 0.5),
+			new ColorStop(0x00FFFF, 1)
+		],
+		mount1: [
+			new ColorStop(0x000000, 0),
+			new ColorStop(0xFFFFFF, 0.5),
+			new ColorStop(0x00FFFF, 1)
+		],
+		mount2: [
+			new ColorStop(0x000000, 0),
+			new ColorStop(0xFFFFFF, 0.5),
+			new ColorStop(0x00FFFF, 1)
+		],
+		mount3: [
+			new ColorStop(0x000000, 0),
+			new ColorStop(0xFFFFFF, 0.5),
+			new ColorStop(0x00FFFF, 1)
+		],
 	},
 
 	currentColor: {

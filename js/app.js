@@ -10,10 +10,6 @@ var materialSun = new THREE.MeshBasicMaterial( { color: 0x000000 } );
 var sun = new THREE.Mesh( new THREE.CircleGeometry( 12, 512 ), materialSun );
 scene.add(sun);
 
-var materialMoon = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
-var moon = new THREE.Mesh( new THREE.CircleGeometry( 12, 512 ), materialMoon );
-// scene.add(moon);
-
 camera.position.z = 100;
 
 sun.geometry.dynamic =
@@ -53,13 +49,17 @@ sun.geometry.normalsNeedUpdate = true;
 (function color() {
     var elapsed = Date.now() - OCTOPUS.getStart();
     if (elapsed <= OCTOPUS.getTime()) {
+		// console.log(elapsed);
         requestAnimationFrame(color);
         var fraction = elapsed / OCTOPUS.getTime();
-		var newColor = UTIL.getColorDifference(OCTOPUS.getColor("white"), OCTOPUS.getColor(0xFFD640), fraction);
+		// console.log(fraction);
+		var newColor = UTIL.getColorDifference(OCTOPUS.getColor("white"),
+						OCTOPUS.getColor(0xFFD640), fraction);
+		newColor = OCTOPUS.getCurrentColor("sun", fraction);
 		if (OCTOPUS.isCurrentColor("sun", newColor)) {
 			return;
 		} else {
-			console.log(newColor);
+			// console.log(newColor);
 			materialSun.color = newColor;
 			OCTOPUS.setCurrentColor("sun", newColor);
 		}
