@@ -3,7 +3,7 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeig
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.setClearColor( 0xB5EFFF, 1 );
+renderer.setClearColor( 0x000000, 1 );
 document.body.appendChild( renderer.domElement );
 
 var materialSun = new THREE.MeshBasicMaterial( { color: 0x000000 } );
@@ -53,15 +53,18 @@ sun.geometry.normalsNeedUpdate = true;
         requestAnimationFrame(color);
         var fraction = elapsed / OCTOPUS.getTime();
 		// console.log(fraction);
-		var newColor = UTIL.getColorDifference(OCTOPUS.getColor("white"),
-						OCTOPUS.getColor(0xFFD640), fraction);
-		newColor = OCTOPUS.getCurrentColor("sun", fraction);
-		if (OCTOPUS.isCurrentColor("sun", newColor)) {
-			return;
-		} else {
-			// console.log(newColor);
-			materialSun.color = newColor;
-			OCTOPUS.setCurrentColor("sun", newColor);
+		for (var i = 0; i < MODEL.objects.length; i++) {
+			var object = MODEL.objects[i];
+			newColor = OCTOPUS.findCurrentColor(object, fraction);
+			if (!OCTOPUS.isCurrentColor(object, newColor)) {
+				OCTOPUS.setCurrentColor(object, newColor);
+			}
+		}
+		materialSun.color = OCTOPUS.getCurrentColor("sun");
+		renderer.setClearColor(OCTOPUS.getCurrentColor("sky").getHex());
+		for (var j = 1; j <= 3; j++) {
+			var mountColor = OCTOPUS.getCurrentColor("mount"+j).getHexString();
+			OCTOPUS.fillMountColor(document.getElementById("path"+j), "#"+mountColor);
 		}
 		renderer.render( scene, camera );
 	}

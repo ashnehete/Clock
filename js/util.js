@@ -21,5 +21,12 @@ var UTIL = {
 		day.setSeconds(0);
 		day.setMilliseconds(0);
 		return day.getTime();
+	},
+
+	getColor: function (color) {
+		if (typeof color === 'string')
+			return MODEL.color[color];
+		else
+			return new THREE.Color(color);
 	}
 };

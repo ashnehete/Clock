@@ -26,7 +26,7 @@ var MODEL = {
 		black: new THREE.Color(0x000000)
 	},
 
-	items: [
+	objects: [
 		"sun", "sky", "mount1", "mount2", "mount3"
 	],
 

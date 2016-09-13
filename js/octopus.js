@@ -10,8 +10,8 @@ var OCTOPUS = {
 		path.setAttribute("fill", color);
 	},
 
-	getCurrentColor: function (item, fraction) {
-		var gradients = MODEL.gradients[item];
+	findCurrentColor: function (object, fraction) {
+		var gradients = MODEL.gradients[object];
 		for (var i = 0; i < gradients.length - 1; i++) {
 			var gradient1 = gradients[i];
 			var gradient2 = gradients[i+1];
@@ -22,12 +22,16 @@ var OCTOPUS = {
 		}
 	},
 
-	setCurrentColor: function (item, color) {
-		MODEL.currentColor[item] = color;
+	getCurrentColor: function(object) {
+		return MODEL.currentColor[object];
 	},
 
-	isCurrentColor: function (item, color) {
-		return (color.getHexString() === MODEL.currentColor[item].getHexString())? true: false;
+	setCurrentColor: function (object, color) {
+		MODEL.currentColor[object] = color;
+	},
+
+	isCurrentColor: function (object, color) {
+		return (color.getHexString() === MODEL.currentColor[object].getHexString())? true: false;
 	},
 
 	getTime: function () {
@@ -36,12 +40,5 @@ var OCTOPUS = {
 
 	getStart: function () {
 		return MODEL.start;
-	},
-
-	getColor: function (color) {
-		if (typeof color === 'string')
-			return MODEL.color[color];
-		else
-			return new THREE.Color(color);
 	}
 };
